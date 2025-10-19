@@ -1,22 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React,{useRef} from 'react';
+import * as ts from "@tensorflow/tfjs";
+import * as facemesh from "@tensorflow-models/facemesh";
+import * as Webcam from "react-webcam";
 function App() {
+  const WebcamRef = useRef(null);
+  const canvasRef = useRef(null);
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Webcam ref={WebcamRef}
+          style={{
+            position: "absolute",
+            marginLeft: "auto",
+            marginRight: "auto",
+            left: 0,
+            right: 0,
+            textAlign: "centr",
+            zIndex: 9,
+            width: 640,
+            height: 480,
+          }}
+        
+        />
+          
+          <canvas 
+          ref={canvasRef}
+          style={{
+            position: "absolute",
+            marginLeft: "auto",
+            marginRight: "auto",
+            left: 0,
+            right: 0,
+            textAlign: "centr",
+            zIndex: 9,
+            width: 640,
+            height: 480,
+          }}
+          ></canvas>
+        
       </header>
     </div>
   );
